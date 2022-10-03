@@ -1,0 +1,18 @@
+/* Montserrat */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap");
+/*"Poppins", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*-------------------------------------------------- General Styling ---------------------------------------------------------------------------------*/
+/* style or your elements here such as p tags etc.. */
+
+a {
+  text-decoration: none;
+}
+
