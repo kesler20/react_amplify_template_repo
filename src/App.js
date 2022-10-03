@@ -1,7 +1,6 @@
 import { React, useEffect } from "react";
 import { Amplify, PubSub } from "aws-amplify";
 import { AWSIoTProvider } from "@aws-amplify/pubsub/lib/Providers";
-import awsExports from "./aws-exports";
 
 // Apply plugin with configuration
 Amplify.addPluggable(
@@ -12,16 +11,18 @@ Amplify.addPluggable(
   })
 );
 
-useEffect(() => {
-  PubSub.subscribe("myTopic").subscribe({
-    next: (data) => console.log("Message received", data),
-    error: (error) => console.error(error),
-    complete: () => console.log("Done"),
-  });
-});
-
-Amplify.configure(awsExports);
 const App = () => {
+  useEffect(() => {
+    PubSub.subscribe("myTopic").subscribe({
+      next: (data) => console.log("Message received", data),
+      error: (error) => console.error(error),
+      complete: () => console.log("Done"),
+    });
+    return () => {
+      PubSub.unsubscribe();
+    };
+  });
+
   return <div className="App">hello world</div>;
 };
 
