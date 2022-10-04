@@ -4,12 +4,13 @@ import "@aws-amplify/ui-react/styles.css";
 import awsExports from "./aws-exports";
 import { useEffect } from "react";
 import RESTfulApiInterface from "./apis/RESTapi";
-
+import awsmobile from "./aws-exports"
 Amplify.configure(awsExports);
 
 const App = ({ signOut, user }) => {
 
   const getUserData = async () => {
+
     const user = await Auth.currentAuthenticatedUser();
     console.log("user", user);
     const token = user.signInUserSession.idToken.jwtToken;
@@ -25,8 +26,10 @@ const App = ({ signOut, user }) => {
     }).catch((e) => {
       console.log(e)
     })
+
   }
   useEffect(() => {
+    console.log(awsmobile.aws_cognito_identity_pool_id)
     getUserData()
   });
   return (
