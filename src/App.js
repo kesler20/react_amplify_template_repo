@@ -8,6 +8,7 @@ import RESTfulApiInterface from "./apis/RESTapi";
 Amplify.configure(awsExports);
 
 const App = ({ signOut, user }) => {
+
   const getUserData = async () => {
     const user = await Auth.currentAuthenticatedUser();
     console.log("user", user);
@@ -15,21 +16,18 @@ const App = ({ signOut, user }) => {
     console.log("token", token);
 
     const requestInfo = { headers: { Authorization: token } };
-
+    
     const api = new RESTfulApiInterface();
-    api.updateEndpoint("/items");
-    api.updateExtraParams(requestInfo);
-    const response = await api
-      .getResource("")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+    api.updateEndpoint("/https://api.github");
+    api.updateExtraParams(requestInfo)
+    const response = await api.getResource("").then((res) => {
+      console.log(res) 
+    }).catch((e) => {
+      console.log(e)
+    })
+  }
   useEffect(() => {
-    getUserData();
+    getUserData()
   });
   return (
     <>
