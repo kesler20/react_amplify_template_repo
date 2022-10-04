@@ -14,3 +14,23 @@ use amplify configure if the either the app nor the uiser that you want to use a
 
 do not use ampolify puyl before pushing the first commiut, this will remove all the current changes thyat you made 
 to the amplify application
+
+to run the workflow use which will:
+- run tests
+- format code
+- pull the latest changes
+- push code to github
+- publish the application
+by running:
+```bash
+python workflow.py 
+```
+
+before ensure that prettier has being installed by running
+```bash
+npm install --save-dev --save-exact prettier
+```
+ensure that jest is installed by running
+```bash
+npm install --save-dev jest
+```

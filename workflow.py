@@ -36,7 +36,7 @@ def push_to_amplify(target_directory:str):
   amplify push
   ```
   '''
-  print("------------- cd into --> {target_directory} 🚕")
+  print(f"------------- cd into --> {target_directory} 🚕")
   os.chdir(target_directory)
   print("------------ running tests using npm 🧪")
   os.system("npm run test")
