@@ -52,9 +52,8 @@ def push_to_amplify(target_directory:str):
   time.sleep(1)
   os.system("git push ")
   print("------------ publishing the application to amplify ✅")
-  time.sleep(1)
   os.system("amplify publish")
-  os.system("------------ workflow compleed successfully ✅")
+  os.system("------------ workflow completed successfully ✅")
 
 
 if __name__ == "__main__":
