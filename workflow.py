@@ -40,8 +40,8 @@ def push_to_amplify(target_directory:str):
   os.chdir(target_directory)
   print("------------ running tests using npm 🧪")
   os.system("npm run test")
-  os.system("a")
-  os.system("q")
+  os.system("echo a")
+  os.system("echo q")
   time.sleep(1)
   print("------------ formatting code using prettier ✨")
   os.system("prettier -w .")
@@ -56,7 +56,8 @@ def push_to_amplify(target_directory:str):
   print("------------ publishing the application to amplify ✅")
   time.sleep(1)
   os.system("amplify publish")
-  os.system("y")
+  os.system("echo y")
+  os.system("------------ workflow compleed successfully ✅")
 
 
 if __name__ == "__main__":
