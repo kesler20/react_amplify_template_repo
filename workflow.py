@@ -36,19 +36,27 @@ def push_to_amplify(target_directory:str):
   amplify push
   ```
   '''
+  print("------------- cd into --> {target_directory} 🚕")
   os.chdir(target_directory)
+  print("------------ running tests using npm 🧪")
   os.system("npm run test")
+  os.system("a")
+  os.system("q")
   time.sleep(1)
+  print("------------ formatting code using prettier ✨")
   os.system("prettier -w .")
   time.sleep(1)
+  print("------------ the tests have passed so we can push to github ✅")
   os.system("git pull")
   time.sleep(1)
   os.system("git add . ")
   os.system('git commit -m "make it better"')
   time.sleep(1)
   os.system("git push ")
+  print("------------ publishing the application to amplify ✅")
   time.sleep(1)
   os.system("amplify publish")
+  os.system("y")
 
 
 if __name__ == "__main__":
