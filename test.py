@@ -2,4 +2,5 @@ import os
 import time
 import sys
 
-os.system("npm test")
+print(sys.argv) 
+print(__name__)

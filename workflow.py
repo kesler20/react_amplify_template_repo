@@ -1,3 +1,4 @@
+import sys
 import os
 import time
 
@@ -56,5 +57,23 @@ def push_to_amplify(target_directory:str):
   os.system("------------ workflow completed successfully ✅")
 
 
+def push_to_github(target_directory):
+  print(f"------------- cd into --> {target_directory} 🚕")
+  os.chdir(target_directory)
+  print("------------ running tests using npm 🧪")
+  os.system("npm test")
+  print("------------ the tests have passed so we can push to github ✅")
+  os.system("git pull")
+  os.system("git add . ")
+  os.system('git commit -m "make it better"')
+  os.system("git push ")
+  print("------------ publishing the application to amplify ✅")
+
 if __name__ == "__main__":
-  push_to_amplify(os.getcwd())
+  if len(sys.argv) > 1:
+    if sys.argv[0] == "workflow.py" and sys.argv[1] == "publish":
+      push_to_amplify(os.getcwd())
+      
+  else:
+    push_to_github(os.getcwd())
+  
