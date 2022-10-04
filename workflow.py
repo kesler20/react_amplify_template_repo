@@ -1,6 +1,71 @@
 import sys
 import os
 import time
+import json
+
+def sync_env_variable_to_aws_exports():
+  AWS_CONFIG_DATA = []
+
+  source_dir = os.path.join(os.getcwd(), "src")
+  print(f"----------- looking for the aws-exports.js in {source_dir} 🔎")
+  time.sleep(1)
+  with open(f"{source_dir}/aws-exports.js", "r") as aws_config_file, open(f"{os.getcwd()}/aws-exports.json", "w") as write_file:
+      content = aws_config_file.readlines()
+
+      print("-------------------------- aws-export.js found ✅")
+      print(aws_config_file.read()) 
+      time.sleep(1)
+      # filter the first three lines
+      clean_content = list(filter(lambda line: content.index(line) > 3, content))
+      clean_content.insert(0, "[{")
+
+      # filter the last two lines
+      clean_content = list(filter(lambda line: clean_content.index(
+          line) < len(clean_content) - 2, clean_content))
+      clean_content.append("}]")
+      
+      print("--------------------- cleaning up the file to make a json 🧹")
+      time.sleep(1)
+
+      for index, line in enumerate(clean_content):
+          write_file.write(line)
+
+  with open(f"{os.getcwd()}/aws-exports.json", "r") as read_config_file:
+      content: 'list[dict]' = json.loads(read_config_file.read())
+      keys = list(content[0].keys())
+      
+      print(f"----------------------- converting the parsed dictionary to .env variables ⚙️")
+      time.sleep(1)
+      print(content[0])
+
+      print("------------------------  ---> ")
+      for k in keys:
+          upper_k = k.upper()
+          AWS_CONFIG_DATA.append(f'REACT_APP_{upper_k} = "{content[0][k]}"')
+      print(f'REACT_APP_{upper_k} = "{content[0][k]}"')
+
+  print("------------------------------- getting the current .env file ✅")
+  time.sleep(1)
+  with open(".env", "r+") as env_file:
+      content = env_file.readlines()
+      clean_content = list(
+          filter(lambda line: line.find("REACT_APP_AWS") == -1, content))
+      for line in clean_content:
+        print(line) 
+
+      for variable in AWS_CONFIG_DATA:
+          clean_content.append(variable)
+
+  print("---------------------------- writing to the final .env file ✏️")
+  time.sleep(1)
+  with open(".env", "w") as write_to_env_file:
+      for line in clean_content:
+        if line == 'REACT_APP_OAUTH = "{}"\n':
+          pass
+        else:
+          line = line.replace("\n", "") 
+          print(line)
+          write_to_env_file.write(f'{line}\n')
 
 def push_to_heroku(backend_directory:str,commit_message: str):
   '''
@@ -56,7 +121,6 @@ def push_to_amplify(target_directory:str):
   os.system("amplify publish")
   os.system("------------ workflow completed successfully ✅")
 
-
 def push_to_github(target_directory):
   print(f"------------- cd into --> {target_directory} 🚕")
   os.chdir(target_directory)
@@ -71,9 +135,11 @@ def push_to_github(target_directory):
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
-    if sys.argv[0] == "workflow.py" and sys.argv[1] == "publish":
+    if sys.argv[1] == "publish":
       push_to_amplify(os.getcwd())
-      
+    if sys.argv[1] == "sync":
+      sync_env_variable_to_aws_exports()
+
   else:
     push_to_github(os.getcwd())
   
