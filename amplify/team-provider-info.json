@@ -23,9 +23,9 @@
           "deploymentBucketName": "amplify-rtatemplate-dev-02430-deployment",
           "s3Key": "amplify-builds/rtatemplatecad8695b-62306d364e722b625658-build.zip"
         },
-        "rtatemplateb68f4f4c": {
+        "rtatemplate72e6410e": {
           "deploymentBucketName": "amplify-rtatemplate-dev-02430-deployment",
-          "s3Key": "amplify-builds/rtatemplateb68f4f4c-3367694739474f416c37-build.zip"
+          "s3Key": "amplify-builds/rtatemplate72e6410e-4a6e3859537879595167-build.zip"
         }
       }
     }

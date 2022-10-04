@@ -1,29 +1,42 @@
-import { React, useEffect } from "react";
-import { Amplify, PubSub } from "aws-amplify";
-import { AWSIoTProvider } from "@aws-amplify/pubsub/lib/Providers";
+import { Amplify, Auth } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+import awsExports from "./aws-exports";
+import { useEffect } from "react";
+import RESTfulApiInterface from "./apis/RESTapi";
 
-// Apply plugin with configuration
-Amplify.addPluggable(
-  new AWSIoTProvider({
-    aws_pubsub_region: "eu-west-2",
-    aws_pubsub_endpoint:
-      "wss://a1rq52k3rsx0d7-ats.iot.eu-west-2.amazonaws.com/mqtt",
-  })
-);
+Amplify.configure(awsExports);
 
-const App = () => {
+const App = ({ signOut, user }) => {
+  const getUserData = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    console.log("user", user);
+    const token = user.signInUserSession.idToken.jwtToken;
+    console.log("token", token);
+
+    const requestInfo = { headers: { Authorization: token } };
+
+    const api = new RESTfulApiInterface();
+    api.updateEndpoint("/items");
+    api.updateExtraParams(requestInfo);
+    const response = await api
+      .getResource("")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   useEffect(() => {
-    PubSub.subscribe("myTopic").subscribe({
-      next: (data) => console.log("Message received", data),
-      error: (error) => console.error(error),
-      complete: () => console.log("Done"),
-    });
-    return () => {
-      PubSub.unsubscribe();
-    };
+    getUserData();
   });
-
-  return <div className="App">hello world</div>;
+  return (
+    <>
+      <h1>Hello {user.username}</h1>
+      <button onClick={signOut}>Sign out</button>
+    </>
+  );
 };
 
-export default App;
+export default withAuthenticator(App);

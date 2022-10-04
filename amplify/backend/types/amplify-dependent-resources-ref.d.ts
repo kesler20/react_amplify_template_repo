@@ -27,7 +27,7 @@ export type AmplifyDependentResourcesAttributes = {
     };
   };
   function: {
-    rtatemplateb68f4f4c: {
+    rtatemplate72e6410e: {
       Name: "string";
       Arn: "string";
       Region: "string";
@@ -35,7 +35,7 @@ export type AmplifyDependentResourcesAttributes = {
     };
   };
   api: {
-    api69251376: {
+    api00cd2dd0: {
       RootUrl: "string";
       ApiName: "string";
       ApiId: "string";

@@ -31,31 +31,20 @@
     }
   },
   "function": {
-    "rtatemplateb68f4f4c": {
+    "rtatemplate72e6410e": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "dynamoe0c64f36",
-          "attributes": ["Name", "Arn"],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
-        }
-      ]
+      "service": "Lambda"
     }
   },
   "api": {
-    "api69251376": {
+    "api00cd2dd0": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "rtatemplateb68f4f4c",
+          "resourceName": "rtatemplate72e6410e",
           "attributes": ["Name", "Arn"]
         }
       ]

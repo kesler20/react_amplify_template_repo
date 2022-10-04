@@ -3,7 +3,7 @@
   "paths": {
     "/items": {
       "name": "/items",
-      "lambdaFunction": "rtatemplateb68f4f4c",
+      "lambdaFunction": "rtatemplate72e6410e",
       "permissions": {
         "setting": "private",
         "auth": ["create", "read", "update", "delete"]

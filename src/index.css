@@ -1,17 +1,11 @@
-/* Montserrat */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap");
-/*"Poppins", sans-serif */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
-* {
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
-/*-------------------------------------------------- General Styling ---------------------------------------------------------------------------------*/
-/* style or your elements here such as p tags etc.. */
-
-a {
-  text-decoration: none;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
