@@ -6,12 +6,7 @@
       "lambdaFunction": "rtatemplateb68f4f4c",
       "permissions": {
         "setting": "private",
-        "auth": [
-          "create",
-          "read",
-          "update",
-          "delete"
-        ]
+        "auth": ["create", "read", "update", "delete"]
       }
     }
   }

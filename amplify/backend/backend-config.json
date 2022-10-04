@@ -8,20 +8,14 @@
       "frontendAuthConfig": {
         "socialProviders": [],
         "usernameAttributes": [],
-        "signupAttributes": [
-          "EMAIL"
-        ],
+        "signupAttributes": ["EMAIL"],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "mfaTypes": ["SMS"],
+        "verificationMechanisms": ["EMAIL"]
       }
     }
   },
@@ -45,10 +39,7 @@
         {
           "category": "storage",
           "resourceName": "dynamoe0c64f36",
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
+          "attributes": ["Name", "Arn"],
           "attributeEnvMap": {
             "Name": "TABLE_NAME",
             "Arn": "TABLE_ARN"
@@ -65,10 +56,7 @@
         {
           "category": "function",
           "resourceName": "rtatemplateb68f4f4c",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
         }
       ]
     }
