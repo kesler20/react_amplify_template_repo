@@ -56,16 +56,15 @@ def sync_env_variable_to_aws_exports():
       for variable in AWS_CONFIG_DATA:
           clean_content.append(variable)
 
-  print("---------------------------- writing to the final .env file ✏️")
+  print("-----------------------qq----- writing to the final .env file ✏️")
   time.sleep(1)
   with open(".env", "w") as write_to_env_file:
-      for line in clean_content:
-        if line == 'REACT_APP_OAUTH = "{}"\n':
-          pass
-        else:
-          line = line.replace("\n", "") 
-          print(line)
-          write_to_env_file.write(f'{line}\n')
+    clean_content = list(set(clean_content))
+    for line in clean_content:
+        line = line.replace("\n", "") 
+        print(line)
+        write_to_env_file.write(f'{line}\n')
+    os.remove("aws-exports.json")
 
 def push_to_heroku(backend_directory:str,commit_message: str):
   '''
