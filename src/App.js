@@ -5,6 +5,7 @@ import awsExports from "./aws-exports";
 import { useEffect } from "react";
 import RESTfulApiInterface from "./apis/RESTapi";
 import awsmobile from "./aws-exports"
+
 Amplify.configure(awsExports);
 
 const App = ({ signOut, user }) => {
